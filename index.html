@@ -378,14 +378,70 @@
       {
         id: "trabalhos-em-altura",
         nome: "Segurança nas Operações nos Trabalhos em Altura",
-        modalidade: "Formação assíncrona",
-        cargaHoraria: "8 horas",
-        preco: "100,00€",
-        precoPorExtenso: "cem euros",
-        prazoConclusao: "6 meses contínuos",
-        plataforma: "Plataforma Moodle"
+        horas: 8
+      },
+      {
+        id: "passaporte-tecnico-operacoes-ambiente-seguranca-higiene-trabalho",
+        nome: "Passaporte Técnico de Operações de Ambiente, Segurança e Higiene no Trabalho",
+        horas: 16
+      },
+      {
+        id: "esg-estrategico-tendencias-implementacao-criacao-valor",
+        nome: "ESG Estratégico: Tendências, Implementação e Criação de Valor",
+        horas: 10
+      },
+      {
+        id: "estrategias-economia-circular-empresas-teoria-pratica",
+        nome: "Estratégias de Economia Circular para Empresas: Da Teoria à Prática",
+        horas: 10
+      },
+      {
+        id: "fundamentos-praticos-avaliacao-ciclo-vida",
+        nome: "Fundamentos Práticos de Avaliação do Ciclo de Vida",
+        horas: 10
+      },
+      {
+        id: "praticas-sustentaveis-logistica-operacoes-otimizacao-inovacao-verde",
+        nome: "Práticas sustentáveis em logística e operações: otimização e inovação verde",
+        horas: 10
+      },
+      {
+        id: "gestao-processos-equipas-eficiencia",
+        nome: "Gestão por processos - Equipas e Eficiência",
+        horas: 10
+      },
+      {
+        id: "matrizes-mapas-competencias-organizacionais",
+        nome: "Matrizes e Mapas de Competências Organizacionais",
+        horas: 10
+      },
+      {
+        id: "avaliacao-desempenho",
+        nome: "Avaliação de desempenho",
+        horas: 10
+      },
+      {
+        id: "manuseamento-tacografos-analogico-digital-inteligentes",
+        nome: "Manuseamento de Tacógrafos: Analógico, Digital e Inteligentes",
+        horas: 4
+      },
+      {
+        id: "gestao-integrada-cursos-efa-candidatura-execucao-avaliacao",
+        nome: "Gestão Integrada de Cursos EFA: Da Candidatura à Execução e Avaliação",
+        horas: 20
+      },
+      {
+        id: "gestao-pratica-acoes-formativas-sigo-teoria-pratica",
+        nome: "Gestão Prática de Ações Formativas no SIGO: Da Teoria à Prática",
+        horas: 4
       }
-    ];
+    ].map((course) => ({
+      ...course,
+      modalidade: "Formação assíncrona",
+      cargaHoraria: `${course.horas} horas`,
+      prazoConclusao: "6 meses contínuos",
+      plataforma: "Plataforma Moodle"
+    }));
 
     const company = {
       nome: "INDICE MÁXIMO - Unipessoal Lda",
@@ -542,7 +598,7 @@
 
         <div class="contract-block">
           <h3>CLÁUSULA 8ª<br>(Pagamentos)</h3>
-          <p>O curso referido na cláusula primeira tem o custo de ${courseSafe.preco} (${courseSafe.precoPorExtenso}) e foi liquidado pelo formando.</p>
+          <p>O curso referido na cláusula primeira já foi liquidado pelo formando.</p>
           <p>O presente contrato, assinado por ambos os outorgantes, deverá ser submetido para que seja dado início ao autoestudo.</p>
           <p>Em caso de litígio, o consumidor pode recorrer a uma Entidade de Resolução Alternativa de Litígios de Consumo: Centro Nacional de Informação e Arbitragem de Conflitos de Consumo (CNIACC) - Telf. 213847484 - mail: cniacc@unl.pt. Mais informações em Portal do Consumidor www.consumidor.pt.</p>
         </div>
