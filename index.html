@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contrato de Formação | Índice Máximo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2433;
+      --muted: #5f6b7a;
+      --line: #d9dee7;
+      --soft: #f4f7fb;
+      --brand: #f05a28;
+      --brand-dark: #c84317;
+      --accent: #3f3f46;
+      --paper: #ffffff;
+      --danger: #a43b3b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #eef2f6;
+    }
+
+    header {
+      background: #2f2f33;
+      color: #fff;
+      padding: 22px 24px;
+      border-bottom: 4px solid var(--brand);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      max-width: 760px;
+      color: #f4f4f5;
+      line-height: 1.45;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
+      gap: 22px;
+      width: min(1280px, calc(100% - 32px));
+      margin: 24px auto;
+      align-items: start;
+    }
+
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(26, 38, 58, 0.08);
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #253143;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #c8d0dc;
+      border-radius: 6px;
+      padding: 10px 11px;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 11px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--brand);
+      color: #fff;
+    }
+
+    button.secondary {
+      background: #4b4b51;
+    }
+
+    button:hover {
+      background: var(--brand-dark);
+    }
+
+    button.secondary:hover {
+      background: #303036;
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .error {
+      display: none;
+      border-left: 4px solid var(--danger);
+      background: #fff4f4;
+      color: #7c2929;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .preview-wrap {
+      overflow: auto;
+      max-height: calc(100vh - 48px);
+    }
+
+    #contractPreview {
+      width: min(100%, 840px);
+      min-height: 1120px;
+      margin: 0 auto;
+      padding: 48px 54px;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .contract-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #d8d8d8;
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+    }
+
+    .brand-logo {
+      width: 132px;
+      height: auto;
+    }
+
+    .cert-logo {
+      width: 220px;
+      height: auto;
+    }
+
+    .contract-title {
+      text-align: center;
+      font-size: 20px;
+      margin: 22px 0;
+      text-transform: uppercase;
+    }
+
+    .contract-block {
+      margin: 16px 0;
+    }
+
+    .contract-block h3 {
+      font-size: 14px;
+      margin: 18px 0 8px;
+      text-transform: uppercase;
+    }
+
+    .contract-block p {
+      margin: 7px 0;
+      text-align: justify;
+    }
+
+    .contract-block ol,
+    .contract-block ul {
+      margin: 7px 0 7px 22px;
+      padding: 0;
+    }
+
+    .contract-block li {
+      margin: 5px 0;
+      text-align: justify;
+    }
+
+    .signatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      margin-top: 64px;
+    }
+
+    .signature-line {
+      border-top: 1px solid #222;
+      padding-top: 8px;
+      text-align: center;
+      min-height: 48px;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 180px;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-wrap {
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header {
+        padding: 18px 16px;
+      }
+
+      main {
+        width: calc(100% - 20px);
+        margin: 14px auto;
+      }
+
+      .row,
+      .signatures {
+        grid-template-columns: 1fr;
+      }
+
+      #contractPreview {
+        padding: 28px 22px;
+        min-height: auto;
+      }
+
+      .brand-logo,
+      .cert-logo {
+        max-width: 46%;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header,
+      .panel {
+        display: none;
+      }
+
+      main {
+        display: block;
+        width: 100%;
+        margin: 0;
+      }
+
+      section {
+        border: 0;
+        box-shadow: none;
+      }
+
+      .preview-wrap {
+        max-height: none;
+        overflow: visible;
+      }
+
+      #contractPreview {
+        width: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Índice Máximo | Contrato de Formação</h1>
+    <p>Preencha os dados essenciais. O contrato é preparado automaticamente no final para descarregar ou imprimir.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Dados do formando</h2>
+      <form id="contractForm">
+        <div class="error" id="formError"></div>
+
+        <label>
+          Nome completo
+          <input name="nome" autocomplete="name" required>
+        </label>
+
+        <label>
+          NIF
+          <input name="nif" inputmode="numeric" maxlength="9" required>
+        </label>
+
+        <label>
+          Curso
+          <select name="curso" id="courseSelect" required></select>
+        </label>
+
+        <p class="hint">A lista de cursos pode ser atualizada no próprio ficheiro, na zona marcada como base de dados.</p>
+
+        <div class="actions">
+          <button type="submit">Preparar contrato</button>
+          <button type="button" class="secondary" id="downloadButton">Descarregar Word</button>
+          <button type="button" class="secondary" id="printButton">Imprimir / PDF</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="preview-wrap">
+      <article id="contractPreview">
+        <div class="empty-state">O contrato aparece aqui depois de preencher o formulário.</div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    // BASE DE DADOS DE CURSOS - substituir e aumentar conforme necessário.
+    const courses = [
+      {
+        id: "trabalhos-em-altura",
+        nome: "Segurança nas Operações nos Trabalhos em Altura",
+        modalidade: "Formação assíncrona",
+        cargaHoraria: "8 horas",
+        preco: "100,00€",
+        precoPorExtenso: "cem euros",
+        prazoConclusao: "6 meses contínuos",
+        plataforma: "Plataforma Moodle"
+      }
+    ];
+
+    const company = {
+      nome: "INDICE MÁXIMO - Unipessoal Lda",
+      nif: "508471265",
+      morada: "Rua 31 de janeiro, nº 776, 4455-584 Perafita",
+      representante: "Marília de Fátima Costa Azevedo"
+    };
+
+    const form = document.querySelector("#contractForm");
+    const courseSelect = document.querySelector("#courseSelect");
+    const preview = document.querySelector("#contractPreview");
+    const error = document.querySelector("#formError");
+    const downloadButton = document.querySelector("#downloadButton");
+    const printButton = document.querySelector("#printButton");
+
+    let latestContractHtml = "";
+    let latestFileName = "contrato-formacao.doc";
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const [year, month, day] = value.split("-");
+      return `${day}/${month}/${year}`;
+    }
+
+    function todayPt() {
+      return new Intl.DateTimeFormat("pt-PT", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      }).format(new Date());
+    }
+
+    function fillCourseSelect() {
+      courseSelect.innerHTML = '<option value="">Selecionar curso</option>';
+      courses.forEach((course) => {
+        const option = document.createElement("option");
+        option.value = course.id;
+        option.textContent = `${course.nome} | ${course.modalidade}`;
+        courseSelect.appendChild(option);
+      });
+    }
+
+    function getFormData() {
+      const data = Object.fromEntries(new FormData(form).entries());
+      return {
+        nome: data.nome.trim(),
+        nif: data.nif.trim(),
+        cursoId: data.curso
+      };
+    }
+
+    function validate(data) {
+      if (!data.nome || !data.nif || !data.cursoId) {
+        return "Preencha todos os campos antes de preparar o contrato.";
+      }
+
+      if (!/^\d{9}$/.test(data.nif)) {
+        return "O NIF deve ter 9 dígitos.";
+      }
+
+      return "";
+    }
+
+    function buildContract(data, course) {
+      const safe = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, escapeHtml(value)]));
+      const courseSafe = Object.fromEntries(Object.entries(course).map(([key, value]) => [key, escapeHtml(value)]));
+      const dateNow = todayPt();
+
+      return `
+        <div class="contract-header">
+          <img class="brand-logo" src="assets/logotipo-indice-maximo.png" alt="Índice Máximo">
+          <img class="cert-logo" src="assets/entidade-formadora-certificada.jpg" alt="Entidade Formadora Certificada DGERT">
+        </div>
+
+        <h2 class="contract-title">Contrato de Formação</h2>
+
+        <div class="contract-block">
+          <p><strong>ENTRE:</strong></p>
+          <p><strong>PRIMEIRO OUTORGANTE:</strong> ${company.nome}, pessoa coletiva nº ${company.nif}, com espaço comercial na ${company.morada}, representado por ${company.representante}.</p>
+          <p>e</p>
+          <p><strong>SEGUNDO OUTORGANTE:</strong> ${safe.nome}, contribuinte nº ${safe.nif}.</p>
+          <p>É celebrado o presente <strong>CONTRATO DE FORMAÇÃO</strong>, que se rege pelas seguintes cláusulas:</p>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 1ª<br>(Objeto do Contrato)</h3>
+          <p>1 - O primeiro outorgante compromete-se a proporcionar ao segundo outorgante a frequência do curso “${courseSafe.nome}”, com a duração de ${courseSafe.cargaHoraria}.</p>
+          <p>2 - Nos termos do nº 3 do artº 4º do Decreto-Lei nº 242/88, de 7 de Julho, o presente contrato não gera nem titula relações de trabalho subordinado e caduca com a conclusão do curso para que foi celebrado.</p>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 2ª<br>(Local, Duração e Horário)</h3>
+          <p>1 - A formação é assegurada pelo primeiro outorgante e terá início imediatamente após a confirmação de compra do curso.</p>
+          <p>2 - A formação irá decorrer através da ${courseSafe.plataforma}, em horário livre, através de sessões assíncronas.</p>
+          <p>3 - O prazo máximo para a conclusão do curso são ${courseSafe.prazoConclusao} desde o momento em que procede à submissão deste contrato assinado na plataforma MOODLE, sendo esta renovável por períodos de 15 dias, mediante o pagamento de uma taxa, conforme estipulado no Regulamento de Atividades Formativas.</p>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 3ª<br>(Direitos do Formando)</h3>
+          <p>O segundo outorgante terá direito a exigir do primeiro outorgante o cumprimento dos deveres previstos na cláusula 5ª do presente contrato.</p>
+          <p>O segundo outorgante tem direito a:</p>
+          <ul>
+            <li>Receber a formação em harmonia com os programas, metodologias e processos de trabalho definidos;</li>
+            <li>Obter no final do curso uma Declaração de Frequência de Formação Profissional, se não for aprovado, e um Certificado de Formação Profissional, se for aprovado;</li>
+            <li>Ser esclarecido através de e-tutor assíncrono para esclarecimento de dúvidas;</li>
+            <li>Conhecer o regulamento interno da entidade formadora Índice Máximo, assim como a sua política de reembolsos e cancelamentos, disponível no website.</li>
+          </ul>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 4ª<br>(Deveres do Formando)</h3>
+          <p>São deveres do segundo outorgante:</p>
+          <ul>
+            <li>Frequentar o curso em formato assíncrono de acordo com as regras do mesmo, realizando todas as atividades associadas a cada módulo e cumprindo o estipulado na página de apresentação do curso;</li>
+            <li>Tratar com respeito e igualdade o primeiro outorgante, seus representantes e trabalhadores;</li>
+            <li>Assegurar as condições necessárias para a frequência da ação através de plataforma online, nomeadamente acesso a um computador e internet, assim como garantir que detém os conhecimentos informáticos necessários à utilização da plataforma MOODLE;</li>
+            <li>Realizar os trabalhos e atividades propostas de forma individual e original, não sendo permitidos plágios, cópias parciais de outros trabalhos ou trabalhos integralmente feitos por programas de IA;</li>
+            <li>Cumprir os demais deveres emergentes do contrato de formação.</li>
+          </ul>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 5ª<br>(Deveres da Entidade Formadora)</h3>
+          <p>São deveres do primeiro outorgante:</p>
+          <ul>
+            <li>Desenvolver a formação programada com respeito pelos referenciais definidos para as UFCD;</li>
+            <li>Facultar ao formando os acessos às plataformas e garantir a sua operabilidade contínua;</li>
+            <li>Assegurar que o formador-tutor responde às questões ou dúvidas colocadas no prazo máximo de 48h úteis;</li>
+            <li>Cumprir os termos do presente contrato;</li>
+            <li>Cumprir o disposto na legislação relativa à proteção de dados pessoais;</li>
+            <li>Emitir, no final do curso, uma Declaração de Frequência de Formação Profissional, se não for aprovado, e um Certificado de Formação Profissional, se for aprovado, devidamente registado no Passaporte Qualifica e no Sistema Integrado de Gestão da Oferta Formativa (SIGO).</li>
+          </ul>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 6ª<br>(Alterações Supervenientes)</h3>
+          <p>1 - A entidade formadora fará alterações aos conteúdos programáticos nas UFCD sempre que tal se verifique no Catálogo Nacional de Qualificações.</p>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 7ª<br>(Cessação do Contrato)</h3>
+          <p>O presente contrato termina após a conclusão do curso.</p>
+          <p>A rescisão do contrato por qualquer uma das partes estará sujeita aos termos e condições explanados na cláusula 3, ponto 3, “Políticas de Reembolso e Cancelamento”.</p>
+        </div>
+
+        <div class="contract-block">
+          <h3>CLÁUSULA 8ª<br>(Pagamentos)</h3>
+          <p>O curso referido na cláusula primeira tem o custo de ${courseSafe.preco} (${courseSafe.precoPorExtenso}) e foi liquidado pelo formando.</p>
+          <p>O presente contrato, assinado por ambos os outorgantes, deverá ser submetido para que seja dado início ao autoestudo.</p>
+          <p>Em caso de litígio, o consumidor pode recorrer a uma Entidade de Resolução Alternativa de Litígios de Consumo: Centro Nacional de Informação e Arbitragem de Conflitos de Consumo (CNIACC) - Telf. 213847484 - mail: cniacc@unl.pt. Mais informações em Portal do Consumidor www.consumidor.pt.</p>
+        </div>
+
+        <p>Perafita, ${dateNow}</p>
+
+        <div class="signatures">
+          <div class="signature-line">O Primeiro Outorgante</div>
+          <div class="signature-line">O Segundo Outorgante</div>
+        </div>
+      `;
+    }
+
+    function prepareContract(event) {
+      event.preventDefault();
+      error.style.display = "none";
+      const data = getFormData();
+      const validation = validate(data);
+      const course = courses.find((item) => item.id === data.cursoId);
+
+      if (validation || !course) {
+        error.textContent = validation || "Selecione um curso válido.";
+        error.style.display = "block";
+        return;
+      }
+
+      latestContractHtml = buildContract(data, course);
+      latestFileName = `contrato-formacao-${data.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.doc`;
+      preview.innerHTML = latestContractHtml;
+    }
+
+    function getExportContractHtml() {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = latestContractHtml;
+      wrapper.querySelectorAll("img").forEach((img) => {
+        img.src = new URL(img.getAttribute("src"), window.location.href).href;
+      });
+      return wrapper.innerHTML;
+    }
+
+    function downloadWord() {
+      if (!latestContractHtml) {
+        form.requestSubmit();
+        if (!latestContractHtml) return;
+      }
+
+      const exportContractHtml = getExportContractHtml();
+      const documentHtml = `
+        <!doctype html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Contrato de Formação</title>
+            <style>
+              body { font-family: Arial, Helvetica, sans-serif; line-height: 1.5; font-size: 11pt; color: #1d2433; }
+              h2 { text-align: center; text-transform: uppercase; font-size: 16pt; }
+              h3 { font-size: 11pt; text-transform: uppercase; margin-top: 18px; }
+              p { text-align: justify; }
+              .contract-header { text-align: right; border-bottom: 1px solid #d8d8d8; padding-bottom: 12px; margin-bottom: 20px; }
+              .brand-logo { width: 115px; height: auto; vertical-align: middle; margin-left: 12px; }
+              .cert-logo { width: 190px; height: auto; vertical-align: middle; margin-left: 12px; }
+              .signatures { display: table; width: 100%; margin-top: 64px; }
+              .signature-line { display: table-cell; width: 50%; border-top: 1px solid #222; padding-top: 8px; text-align: center; }
+            </style>
+          </head>
+          <body>${exportContractHtml}</body>
+        </html>
+      `;
+
+      const blob = new Blob(["\ufeff", documentHtml], { type: "application/msword" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = latestFileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+    }
+
+    form.addEventListener("submit", prepareContract);
+    downloadButton.addEventListener("click", downloadWord);
+    printButton.addEventListener("click", () => {
+      if (!latestContractHtml) {
+        form.requestSubmit();
+      }
+      if (latestContractHtml) {
+        window.print();
+      }
+    });
+
+    fillCourseSelect();
+  </script>
+</body>
+</html>
