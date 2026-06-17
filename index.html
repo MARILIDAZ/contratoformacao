@@ -147,6 +147,17 @@
       line-height: 1.45;
     }
 
+    .submission-note {
+      border-left: 4px solid var(--brand);
+      background: #fff7f2;
+      color: #4a2a1c;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 2px 0;
+    }
+
     .error {
       display: none;
       border-left: 4px solid var(--danger);
@@ -349,6 +360,8 @@
           <button type="button" class="secondary" id="downloadButton">Descarregar Word</button>
           <button type="button" class="secondary" id="printButton">Imprimir / PDF</button>
         </div>
+
+        <p class="submission-note">Depois de descarregar e assinar o contrato, submeta o documento na plataforma Moodle.</p>
       </form>
     </section>
 
@@ -561,22 +574,42 @@
       preview.innerHTML = latestContractHtml;
     }
 
-    function getExportContractHtml() {
+    function imageToDataUrl(img) {
+      return new Promise((resolve) => {
+        if (!img.complete || !img.naturalWidth) {
+          resolve(img.src);
+          return;
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const context = canvas.getContext("2d");
+        context.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/png"));
+      });
+    }
+
+    async function getExportContractHtml() {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = latestContractHtml;
-      wrapper.querySelectorAll("img").forEach((img) => {
-        img.src = new URL(img.getAttribute("src"), window.location.href).href;
-      });
+      const sourceImages = preview.querySelectorAll("img");
+      const exportImages = wrapper.querySelectorAll("img");
+
+      for (let index = 0; index < exportImages.length; index += 1) {
+        exportImages[index].src = await imageToDataUrl(sourceImages[index]);
+      }
+
       return wrapper.innerHTML;
     }
 
-    function downloadWord() {
+    async function downloadWord() {
       if (!latestContractHtml) {
         form.requestSubmit();
         if (!latestContractHtml) return;
       }
 
-      const exportContractHtml = getExportContractHtml();
+      const exportContractHtml = await getExportContractHtml();
       const documentHtml = `
         <!doctype html>
         <html>
