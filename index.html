@@ -434,6 +434,13 @@
         id: "gestao-pratica-acoes-formativas-sigo-teoria-pratica",
         nome: "Gestão Prática de Ações Formativas no SIGO: Da Teoria à Prática",
         horas: 4
+      },
+      {
+        id: "gestao-estrategica-operacional-formacao",
+        nome: "Gestão Estratégica e Operacional da Formação",
+        horas: 150,
+        trabalhoFinal: true,
+        eTutorGpt: true
       }
     ].map((course) => ({
       ...course,
@@ -518,6 +525,18 @@
       const safe = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, escapeHtml(value)]));
       const courseSafe = Object.fromEntries(Object.entries(course).map(([key, value]) => [key, escapeHtml(value)]));
       const dateNow = todayPt();
+      const clausulasEspecificas = course.trabalhoFinal ? `
+          <p>4 - A conclusão do curso exige a realização e submissão de um trabalho final, de acordo com as orientações, critérios de avaliação e prazos definidos pela entidade formadora.</p>
+          <p>5 - Durante o curso, o segundo outorgante terá acesso a um e-tutor disponibilizado através de um GPT personalizado, configurado e treinado pela formadora para apoiar a aprendizagem, esclarecer dúvidas e orientar a realização das atividades e do trabalho final.</p>
+          <p>6 - A utilização do e-tutor exige que o segundo outorgante disponha de uma conta no ChatGPT. Para este efeito, é suficiente uma conta gratuita, cuja criação e manutenção são da responsabilidade do segundo outorgante.</p>
+          <p>7 - O e-tutor constitui um recurso complementar de apoio pedagógico. As suas respostas devem ser analisadas criticamente pelo formando e não substituem as orientações da formadora, os conteúdos do curso, os critérios de avaliação nem a decisão final da entidade formadora.</p>
+        ` : "";
+
+      const deveresEspecificos = course.trabalhoFinal ? `
+            <li>Realizar e submeter o trabalho final nos termos definidos pela entidade formadora, respeitando os critérios de avaliação, as orientações e os prazos comunicados;</li>
+            <li>Criar e manter uma conta gratuita no ChatGPT para aceder ao e-tutor disponibilizado no âmbito do curso;</li>
+            <li>Utilizar o e-tutor como recurso de apoio à aprendizagem, mantendo a responsabilidade pela autoria, verificação e qualidade das respostas, atividades e trabalho final submetidos;</li>
+        ` : "";
 
       return `
         <div class="contract-header">
@@ -546,6 +565,7 @@
           <p>1 - A formação é assegurada pelo primeiro outorgante e terá início imediatamente após a confirmação de compra do curso.</p>
           <p>2 - A formação irá decorrer através da ${courseSafe.plataforma}, em horário livre, através de sessões assíncronas.</p>
           <p>3 - O prazo máximo para a conclusão do curso são ${courseSafe.prazoConclusao} desde o momento em que procede à submissão deste contrato assinado na plataforma MOODLE, sendo esta renovável por períodos de 15 dias, mediante o pagamento de uma taxa, conforme estipulado no Regulamento de Atividades Formativas.</p>
+          ${clausulasEspecificas}
         </div>
 
         <div class="contract-block">
@@ -568,6 +588,7 @@
             <li>Tratar com respeito e igualdade o primeiro outorgante, seus representantes e trabalhadores;</li>
             <li>Assegurar as condições necessárias para a frequência da ação através de plataforma online, nomeadamente acesso a um computador e internet, assim como garantir que detém os conhecimentos informáticos necessários à utilização da plataforma MOODLE;</li>
             <li>Realizar os trabalhos e atividades propostas de forma individual e original, não sendo permitidos plágios, cópias parciais de outros trabalhos ou trabalhos integralmente feitos por programas de IA;</li>
+            ${deveresEspecificos}
             <li>Cumprir os demais deveres emergentes do contrato de formação.</li>
           </ul>
         </div>
